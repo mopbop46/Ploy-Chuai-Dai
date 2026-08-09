@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons (ไอคอนสวย คมชัด ไม่ติดพื้นหลังดำ) -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -115,7 +115,6 @@
             color: var(--text-main);
         }
 
-        /* ตกแต่งสีและขนาดไอคอน */
         .form-group label i {
             font-size: 1.1rem;
         }
@@ -254,6 +253,53 @@
             left: 0;
             color: #3b82f6;
         }
+
+        /* ส่วนกล่องลิงก์สอนวิธีเพิ่มลงหน้าจอโฮม */
+        .tutorial-card {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tutorial-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutorial-info i {
+            font-size: 1.2rem;
+            color: #2563eb;
+        }
+
+        .tutorial-text {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .tutorial-btn {
+            background-color: #2563eb;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tutorial-btn:hover {
+            background-color: #1d4ed8;
+        }
     </style>
 </head>
 <body>
@@ -320,6 +366,17 @@
                 <i class="fa-solid fa-rotate-left"></i>
                 ล้างค่าทั้งหมด
             </button>
+
+            <!-- แนะนำการเพิ่มลงหน้าจอโฮม -->
+            <div class="tutorial-card">
+                <div class="tutorial-info">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span class="tutorial-text">อยากเซฟไว้ใช้บนหน้าจอมือถือ?</span>
+                </div>
+                <a href="https://www.google.com/search?q=วิธีเพิ่มเว็บไว้หน้าจอโฮม+iOS+Android" target="_blank" class="tutorial-btn">
+                    ดูวิธีทำ <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
 
             <!-- เงื่อนไขโครงการ -->
             <div class="rules-card">

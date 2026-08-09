@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ไทยช่วยไทย พลัส+</title>
+    <title>พลอยช่วย พลัส+</title>
     <!-- Google Font - Prompt -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons (ไอคอนสวย คมชัด ไม่ติดพื้นหลังดำ) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -106,12 +108,9 @@
             color: var(--text-main);
         }
 
-        /* ตกแต่งขนาดรูป GIF ให้พอดีกับบรรทัด */
-        .icon-gif {
-            width: 26px;
-            height: 26px;
-            object-fit: contain;
-            vertical-align: middle;
+        /* ตกแต่งสีและขนาดไอคอน */
+        .form-group label i {
+            font-size: 1.1rem;
         }
 
         .input-wrapper {
@@ -255,21 +254,21 @@
     <div class="container">
         <!-- แบนเนอร์หัวเว็บ -->
         <div class="header-banner">
-            <h1>โครงการ ไทยช่วยไทย พลัส+</h1>
-            <p>คำนวณราคาของที่ เพิ่ลๆจะซื้อ</p>
+            <h1>โครงการ พลอยช่วย พลัส+</h1>
+            <p>คำนวณราคาของที่ เพิ่ลๆ จะซื้อ</p>
         </div>
 
         <div class="card-body">
-            <!-- กล่องคำแนะนำ ใส่ GIF คีย์บอร์ด -->
+            <!-- กล่องคำแนะนำ -->
             <div class="hint">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZwdnhuNDRnaTRxbTZoNGYxNHRia2pzaGhyOHd6NmFnaGs1ZmZrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o7TKSjR414sCWsgsa/giphy.gif" class="icon-gif" alt="typing">
+                <i class="fa-solid fa-keyboard" style="color: #6366f1;"></i>
                 <span>กรอก ราคา ที่จะคำนวณ ระบบจะคำนวณช่องอื่นให้อัตโนมัติเลยนะจ๊ะ</span>
             </div>
 
-            <!-- 1. ราคาสินค้าทั้งหมด ใส่ GIF ถุงช้อปปิ้ง/ป้ายราคา -->
+            <!-- 1. ราคาสินค้าทั้งหมด -->
             <div class="form-group">
                 <label for="totalInput">
-                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmwzOGpsa3dyNG0xdjdxNDVwZmNvaWFldndybHZndWh1dGtzaG10bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l0HlA3iZ3p0Qz2k00/giphy.gif" class="icon-gif" alt="price tag">
+                    <i class="fa-solid fa-tag" style="color: #2563eb;"></i>
                     ราคาสินค้า (100%)
                 </label>
                 <div class="input-wrapper">
@@ -278,24 +277,24 @@
                 </div>
             </div>
 
-            <!-- 2. รัฐช่วยจ่าย ใส่ GIF ธนาคาร/เงิน -->
+            <!-- 2. รัฐช่วยจ่าย -->
             <div class="form-group">
                 <label for="govInput">
-                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzR6YnA5NDI5MWo2cDFocTBwbml5ZHBoYmdmcnRjcXkydGlxbmkyMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o6gDWzmMfsN31o156/giphy.gif" class="icon-gif" alt="bank">
-                    รัฐช่วยจ่ายฮ้าฟฟู้วว (60%)
+                    <i class="fa-solid fa-building-columns" style="color: #059669;"></i>
+                    พลอยช่วยจ่ายเอง (60%)
                 </label>
                 <div class="input-wrapper">
                     <input type="number" id="govInput" placeholder="0.00" step="any">
                     <span class="unit">บาท</span>
                 </div>
-                <div class="sub-text">* รัฐช่วยจ่ายสูงสุดไม่เกิน 200 บาท/วัน</div>
+                <div class="sub-text">* พลอยช่วยจ่ายสูงสุดไม่เกิน 200 บาท/วัน</div>
             </div>
 
-            <!-- 3. ประชาชนจ่ายเอง ใส่ GIF กระเป๋าเงินขยับ -->
+            <!-- 3. ประชาชนจ่ายเอง -->
             <div class="form-group">
                 <label for="userInput">
-                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExazg4dWd4a3lhazlueGxsNzdpbnI0cG1zOG96bnNydGkzbDhhcGdzYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o7TKN98y4yiPy801O/giphy.gif" class="icon-gif" alt="wallet">
-                    ดิฉันจ่ายเองนะจ๊ะ (40%)
+                    <i class="fa-solid fa-wallet" style="color: #d97706;"></i>
+                    จ่ายเอาเองนะเพิ่ลๆ (40%)
                 </label>
                 <div class="input-wrapper">
                     <input type="number" id="userInput" placeholder="0.00" step="any">
@@ -309,19 +308,19 @@
                 <div class="progress-user" id="progressUser"></div>
             </div>
 
-            <!-- ปุ่มล้างค่า ใส่ GIF หมุนๆ/ลบ -->
+            <!-- ปุ่มล้างค่า -->
             <button class="btn-reset" id="resetBtn">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpucTFiM2psdnE2OGk4c2E1MXlhNDBzeGU2c3RwOTlycHFxdnU3ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l0HlO4kFm1YxM4d0Y/giphy.gif" class="icon-gif" alt="reset">
+                <i class="fa-solid fa-rotate-left"></i>
                 ล้างค่าทั้งหมด
             </button>
 
             <!-- เงื่อนไขโครงการ -->
             <div class="rules-card">
-                <h3>เงื่อนไขโครงการเด๋อจ๊ะ:</h3>
+                <h3>เงื่อนไขโครงการนะเพิ่ลๆ:</h3>
                 <ul>
-                    <li>รัฐช่วยจ่าย 60% ประชาชนจ่ายเอง 40%</li>
-                    <li>จำกัดวงเงินรัฐช่วยจ่ายสูงสุดไม่เกิน 200 บาท/วัน</li>
-                    <li>ยอดสินค้า 333.33 บาทขึ้นไป รัฐจะช่วยเต็มสิทธิ์ที่ 200 บาท</li>
+                    <li>พลอยช่วยจ่าย 60% หล่อนจ่ายเอง 40%</li>
+                    <li>จำกัดวงเงินพลอยช่วยจ่ายสูงสุดไม่เกิน 200 บาท/วัน</li>
+                    <li>ยอดสินค้า 333.33 บาทขึ้นไป พลอยจะช่วยเต็มสิทธิ์ที่ 200 บาท</li>
                     <li>จัดทำโดย พลอย เรสซิ่ง</li>
                 </ul>
             </div>

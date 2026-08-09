@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำนวณโครงการ ไทยช่วยไทย พลัส</title>
+    <!-- Google Font - Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --gov-color: #0284c7;
+            --user-color: #16a34a;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            padding: 28px 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .hint {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 40px 12px 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .input-wrapper span.unit {
+            position: absolute;
+            right: 14px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        /* ปรับสีช่องอินพุตเพื่อแบ่งความชัดเจน */
+        #govInput { color: var(--gov-color); }
+        #userInput { color: var(--user-color); }
+
+        .sub-text {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin-top: 4px;
+        }
+
+        .rules-card {
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .rules-card h3 {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+        }
+
+        .rules-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules-card li {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .rules-card li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>ไทยช่วยไทย พลัส</h1>
+            <p>คำนวณรายจ่ายและวงเงินช่วยเหลือต่อวัน</p>
+        </div>
+
+        <div class="hint">
+            💡 กรอกตัวเลขในช่องใดก็ได้ ระบบจะคำนวณช่องอื่นให้อัตโนมัติ
+        </div>
+
+        <!-- 1. ราคาสินค้าทั้งหมด -->
+        <div class="form-group">
+            <label for="totalInput">ราคาสินค้าทั้งหมด</label>
+            <div class="input-wrapper">
+                <input type="number" id="totalInput" placeholder="0.00" step="any">
+                <span class="unit">บาท</span>
+            </div>
+        </div>
+
+        <!-- 2. รัฐช่วยจ่าย -->
+        <div class="form-group">
+            <label for="govInput">รัฐช่วยจ่าย (60%)</label>
+            <div class="input-wrapper">
+                <input type="number" id="govInput" placeholder="0.00" step="any">
+                <span class="unit">บาท</span>
+            </div>
+            <div class="sub-text">* รัฐช่วยจ่ายสูงสุดไม่เกิน 200 บาท/วัน</div>
+        </div>
+
+        <!-- 3. ประชาชนจ่ายเอง -->
+        <div class="form-group">
+            <label for="userInput">ประชาชนจ่ายเอง (40%)</label>
+            <div class="input-wrapper">
+                <input type="number" id="userInput" placeholder="0.00" step="any">
+                <span class="unit">บาท</span>
+            </div>
+        </div>
+
+        <!-- เงื่อนไขโครงการ -->
+        <div class="rules-card">
+            <h3>เงื่อนไขโครงการ:</h3>
+            <ul>
+                <li>รัฐช่วยจ่าย 60% ประชาชนจ่ายเอง 40%</li>
+                <li>จำกัดวงเงินรัฐช่วยจ่ายสูงสุดไม่เกิน 200 บาท/วัน</li>
+                <li>ยอดสินค้า 333.33 บาทขึ้นไป รัฐจะช่วยเต็มสิทธิ์ที่ 200 บาท</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const totalInput = document.getElementById('totalInput');
+        const govInput = document.getElementById('govInput');
+        const userInput = document.getElementById('userInput');
+
+        // ฟังก์ชันช่วยจัดฟอร์แมตตัวเลขให้มีทศนิยมไม่เกิน 2 ตำแหน่ง
+        function formatNumber(num) {
+            return (Math.round(num * 100) / 100).toFixed(2);
+        }
+
+        // 1. เมื่อพิมพ์ช่อง "ราคาสินค้าทั้งหมด"
+        totalInput.addEventListener('input', () => {
+            const total = parseFloat(totalInput.value);
+            if (isNaN(total) || total <= 0) {
+                govInput.value = '';
+                userInput.value = '';
+                return;
+            }
+
+            // รัฐช่วย 60% สูงสุดไม่เกิน 200 บาท
+            const gov = Math.min(total * 0.6, 200);
+            const user = total - gov;
+
+            govInput.value = formatNumber(gov);
+            userInput.value = formatNumber(user);
+        });
+
+        // 2. เมื่อพิมพ์ช่อง "รัฐช่วยจ่าย"
+        govInput.addEventListener('input', () => {
+            let gov = parseFloat(govInput.value);
+            if (isNaN(gov) || gov <= 0) {
+                totalInput.value = '';
+                userInput.value = '';
+                return;
+            }
+
+            // ถ้าระบุรัฐช่วยเกิน 200 บาท ให้ปรับเป็น 200 บาท
+            if (gov > 200) {
+                gov = 200;
+                govInput.value = 200;
+            }
+
+            if (gov === 200) {
+                // ถ้ารัฐจ่ายเต็ม 200 บาท แสดงว่ายอดรวม 333.33 บาทขึ้นไป
+                // ในกรณีนี้ถ้าไม่รู้ยอดรวมเดิม จะสมมติฐานยอดขั้นต่ำ 333.33 บาท
+                totalInput.value = formatNumber(333.33);
+                userInput.value = formatNumber(133.33);
+            } else {
+                // ถ้ารัฐจ่าย < 200 บาท ยอดรวม = gov / 0.6
+                const total = gov / 0.6;
+                const user = total - gov;
+
+                totalInput.value = formatNumber(total);
+                userInput.value = formatNumber(user);
+            }
+        });
+
+        // 3. เมื่อพิมพ์ช่อง "ประชาชนจ่ายเอง"
+        userInput.addEventListener('input', () => {
+            const user = parseFloat(userInput.value);
+            if (isNaN(user) || user <= 0) {
+                totalInput.value = '';
+                govInput.value = '';
+                return;
+            }
+
+            // ยอด 133.33 บาทของประชาชน คือจุดที่รัฐช่วยเต็ม 200 บาทพอดี (133.33 + 200 = 333.33)
+            if (user <= 133.3333) {
+                // ประชาชนจ่าย 40% -> ยอดรวม = user / 0.4
+                const total = user / 0.4;
+                const gov = total * 0.6;
+
+                totalInput.value = formatNumber(total);
+                govInput.value = formatNumber(gov);
+            } else {
+                // ถ้าประชาชนจ่าย > 133.33 บาท แสดงว่าส่วนเกิน 200 ของรัฐแล้ว
+                // รัฐจะช่วยตันที่ 200 บาทพอดี
+                const gov = 200;
+                const total = user + gov;
+
+                totalInput.value = formatNumber(total);
+                govInput.value = formatNumber(gov);
+            }
+        });
+    </script>
+</body>
+</html>
